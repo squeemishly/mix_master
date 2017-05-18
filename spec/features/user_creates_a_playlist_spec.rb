@@ -11,10 +11,9 @@ RSpec.describe "A user can create a playlist" do
       click_on "New Playlist"
 
       fill_in "playlist_title", with: "rock out"
-      check song.title
-      check song2.title
+      page.check("song-#{song.id}")
+      page.check("song-#{song2.id}")
       click_on "Create Playlist"
-      # save_and_open_page
 
       expect(page).to have_content "rock out"
 
@@ -22,7 +21,7 @@ RSpec.describe "A user can create a playlist" do
         expect(page).to have_link song.title, href: song_path(song)
       end
 
-      withing("li:last") do
+      within("li:last") do
         expect(page).to have_link song2.title, href: song_path(song2)
       end
     end

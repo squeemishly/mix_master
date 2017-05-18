@@ -5,7 +5,8 @@
   <%= f.text_field :title %>
   <% @songs.each do |song| %>
     <div>
-      <%= check_box_tag(:song_ids, song.id, false, :name => song.title, id: song) %>
+      <%#= check_box_tag(:song_ids, song.id, false, name: song.title, id: song.id) %>
+      <%= check_box_tag(:song_ids, song.id, false, :name => "playlist[song_ids][]", id: "song-#{song.id}") %>
       <%= song.title %>
     </div>
   <% end %>
